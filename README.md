@@ -6,10 +6,7 @@
 
 This repository contains the reproducible analytical workflow, R scripts, and Bayesian modeling diagnostic outputs (using Stan and the `brms` package) necessary to replicate the findings of our manuscript: **"Spatial Risk Mapping of Maritime Accidents in the Baltic Sea: A Bayesian Hierarchical Approach using AIS and Environmental Data"**.
 
-To make the review process as seamless and transparent as possible, we have compiled the entire methodology, extended MCMC diagnostics, and high-resolution spatial plots into an interactive Quarto website. 
-
-**Please access the supplementary materials here:** 👉 [Click here to view the Interactive Supplementary Website](: https://balticresearcher-
-git.github.io/supplementary-materials/)
+To make the review process as seamless and transparent as possible, we have compiled the entire methodology, extended MCMC diagnostics, and high-resolution spatial plots into an interactive Quarto website. [Click here to view the Interactive Supplementary Website](https://balticresearcher-git.github.io/supplementary-materials/)
 
 ## Reproducibility Statement
 
