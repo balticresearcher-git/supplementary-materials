@@ -1,0 +1,75 @@
+---
+title: "4. Results"
+engine: knitr
+format:
+  html:
+    toc: true
+    code-fold: true
+    warning: false
+    message: false
+    embed-resources: true
+---
+
+```{r}
+#| echo: false
+
+library(brms)
+library(ggplot2)
+library(dplyr)
+library(here)
+
+fit_full_time_with_traffic <- readRDS(here::here("Fit/fit_full_time_with_traffic.rds"))
+
+effects <- conditional_effects(fit_full_time_with_traffic, resolution = 1000)
+
+plot_sst <- plot(effects, plot = FALSE)[["mean_sst"]] +
+  labs(
+    title = "A. Marginal Effect of Sea Surface Temperature",
+    subtitle = "Expected accident count holding traffic and time constant",
+    x = "Mean Sea Surface Temperature [°C]",
+    y = "Predicted Number of Accidents"
+  ) +
+  theme_classic() +
+  theme(plot.title = element_text(face = "bold"))
+
+print(plot_sst)
+```
+
+Figure S4. Conditional effect of Sea Surface Temperature (SST). The plot illustrates the marginal effect of SST on the expected number of maritime accidents per grid cell, with all other predictors held at their reference levels and the traffic offset held at its median. The shaded area represents the 95% Bayesian credible interval. Although a slight downward trend is visible, the wide credible intervals encompassing zero indicate no substantial, independent thermal effect, supporting the hypothesis that modern navigational technologies effectively mitigate freezing-related risks.
+
+```{r}
+#| echo: false
+
+plot_year <- plot(effects, plot = FALSE)[["rok_num"]] +
+  labs(
+    title = "B. Temporal Trend (Year-over-Year)",
+    subtitle = "Long-term variation in expected accident counts",
+    x = "Year",
+    y = "Predicted Number of Accidents"
+  ) +
+  theme_classic() +
+  theme(plot.title = element_text(face = "bold"))
+
+print(plot_year)
+```
+
+Figure S5. Long-term temporal trend of accident risk. The partial dependence plot displays the estimated continuous effect of time (rok_num) on accident frequency. The visible, credible upward trajectory indicates a systematic, underlying increase in baseline accident risk over the studied period (approx. 18.5% year-over-year). This increase is independent of fluctuations in vessel traffic volume, pointing toward external latent factors such as fleet aging or increased reporting strictness (e.g., EMSA EMCiP implementation).
+
+```{r}
+#| echo: false
+
+plot_month <- plot(effects, plot = FALSE)[["miesiac_factor"]] +
+  labs(
+    title = "C. Seasonal Variation",
+    subtitle = "Monthly distribution of expected accidents",
+    x = "Month",
+    y = "Predicted Number of Accidents"
+  ) +
+  theme_classic() +
+  theme(plot.title = element_text(face = "bold"),
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+print(plot_month)
+```
+
+Figure S6. Seasonal variations in expected accident counts. Point estimates with 95% credible intervals showing the isolated effect of specific months on accident probability. January serves as the high-risk baseline. Paradoxically, peak icing months (February, April) exhibit a substantial drop in baseline risk, reflecting the Risk Homeostasis Theory—whereby severe winter conditions prompt risk-compensating behaviors, such as convoy systems and heightened crew vigilance. A secondary peak is observable in summer (e.g., July), driven by distinct mechanisms such as recreational traffic congestion.

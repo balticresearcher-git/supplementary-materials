@@ -1,0 +1,36 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Bayesian Spatiotemporal Modeling of Maritime Accidents"
+  description: "Supplementary Materials"
+  
+  sidebar:
+    style: "floating"
+    search: true
+    contents:
+      - text: "Overview"
+        file: index.qmd
+      - text: "1. Data Preparation"
+        file: 01_data_prep.qmd
+      - text: "2. Model Specification"
+        file: 02_model_setup.qmd
+      - text: "3. MCMC Diagnostics"
+        file: 03_diagnostics.qmd
+      - text: "4. Results & Marginal Effects"
+        file: 04_results.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-title: "On this page"
+    code-fold: true       # Magiczna opcja! Zwiń kod domyślnie
+    code-summary: "Show the code"
+    code-tools: true
+    df-print: paged
+
+
+

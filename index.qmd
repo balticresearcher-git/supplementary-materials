@@ -1,0 +1,33 @@
+---
+title: "Spatial Risk Mapping of Maritime Accidents in the Baltic Sea: A Bayesian Hierarchical Approach using AIS and Environmental Data"
+authors: "Anonymous Authors (for Double-Blind Review)"
+bibliography: references.bib
+---
+
+# Welcome
+
+Welcome to the online supplementary repository for our manuscript. This interactive research compendium has been created to ensure full transparency, reproducibility, and methodological rigor in accordance with Open Science practices.
+
+Here, you will find the complete analytical workflow, including R code, model specifications, and extended Bayesian diagnostics that could not be included in the main text due to formatting and length constraints.
+
+# Abstract
+This study presents a data-driven Bayesian hierarchical framework to model maritime accident risk in the Baltic Sea. By integrating accident records, AIS traffic density, and Sea Surface Temperature (SST) into a Zero-Inflated Negative Binomial (ZINB) model, we explicitly treat traffic as an exposure offset. Results indicate that while traffic density primarily drives accident frequency, SST lacks a credible independent effect, suggesting the resilience of modern fleets to thermal conditions. However, a substantial increasing trend in baseline risk (approx. 18.5 percent per year) was identified, alongside distinct high-risk hotspots in the Danish Straits and Gulf of Gdańsk. The findings demonstrate that ignoring the exposure offset leads to confounding bias. The proposed framework effectively isolates residual spatial risk, providing a robust tool for Marine Spatial Planning and dynamic resource allocation.
+
+# How to Navigate This Site
+
+Use the sidebar on the left to navigate through the different stages of our analytical pipeline:
+
+1. Data Preparation: Details on spatial grid generation, merging of EMSA accident records, and extraction of AIS exposure and environmental data (SST).
+
+2. Model Specification: The mathematical formulation of the ZINB model and the exact brms syntax used for Bayesian inference.
+
+3. MCMC Diagnostics: Rigorous checks for algorithm convergence, including traceplots, rank histograms, and autocorrelation functions (ACF).
+
+4. Results and Marginal Effects: Posterior predictive checks, LOO-CV evaluation, and high-resolution plots of conditional marginal effects (temperature, time trend, and seasonality).
+
+# Reproducibility Statement
+
+All models were estimated using Hamiltonian Monte Carlo (HMC) sampling via the Stan probabilistic programming language, interfaced through the brms package in R.
+
+Note to Reviewers: The R code used to generate the models and plots is embedded within this document. You can view the specific code chunks by clicking the "Show the code" buttons scattered throughout the pages.
+
