@@ -40,7 +40,7 @@ summary(data %>% select(total_count, mean_sst, mean_traffic))
 The "Zero-Inflation" Problem
 The fundamental challenge in modeling maritime accidents is their rarity. Traditional Poisson or Negative Binomial models often fail because they cannot account for the massive excess of zeros (grid cells with no accidents in a given month).
 
-The bar plot below illustrates the distribution of our response variable (total_count). The overwhelming dominance of zeros strictly justifies the deployment of a Zero-Inflated Negative Binomial (ZINB) modeling framework.
+The bar plot below illustrates the distribution of my response variable (total_count). The overwhelming dominance of zeros strictly justifies the deployment of a Zero-Inflated Negative Binomial (ZINB) modeling framework.
 
 ```{r}
 #| label: plot-zeros
@@ -60,7 +60,7 @@ ggplot(data, aes(x = total_count)) +
 ```
 
 Exposure Variable: Vessel Traffic Density
-In spatial risk analysis, areas with higher traffic inherently carry a higher baseline risk of incidents. We use AIS-derived traffic density (mean_traffic) as an exposure offset in our Bayesian model.
+In spatial risk analysis, areas with higher traffic inherently carry a higher baseline risk of incidents. I use AIS-derived traffic density (mean_traffic) as an exposure offset in my Bayesian model.
 
 The scatter plot below shows the relationship between traffic density and accident occurrence. As expected, accidents (values > 0) tend to cluster in grid cells with higher traffic volumes (such as the Danish Straits or the Gulf of Gdańsk).
 

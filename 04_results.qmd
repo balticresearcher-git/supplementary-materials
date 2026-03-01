@@ -7,7 +7,6 @@ format:
     code-fold: true
     warning: false
     message: false
-    embed-resources: true
 ---
 
 ```{r}

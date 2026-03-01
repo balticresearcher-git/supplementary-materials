@@ -253,7 +253,7 @@ $ year_num     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 </div>
 </div>
 <p>The “Zero-Inflation” Problem The fundamental challenge in modeling maritime accidents is their rarity. Traditional Poisson or Negative Binomial models often fail because they cannot account for the massive excess of zeros (grid cells with no accidents in a given month).</p>
-<p>The bar plot below illustrates the distribution of our response variable (total_count). The overwhelming dominance of zeros strictly justifies the deployment of a Zero-Inflated Negative Binomial (ZINB) modeling framework.</p>
+<p>The bar plot below illustrates the distribution of my response variable (total_count). The overwhelming dominance of zeros strictly justifies the deployment of a Zero-Inflated Negative Binomial (ZINB) modeling framework.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the distribution of accidents (Code)</summary>
@@ -277,7 +277,7 @@ $ year_num     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 </div>
 </div>
 </div>
-<p>Exposure Variable: Vessel Traffic Density In spatial risk analysis, areas with higher traffic inherently carry a higher baseline risk of incidents. We use AIS-derived traffic density (mean_traffic) as an exposure offset in our Bayesian model.</p>
+<p>Exposure Variable: Vessel Traffic Density In spatial risk analysis, areas with higher traffic inherently carry a higher baseline risk of incidents. I use AIS-derived traffic density (mean_traffic) as an exposure offset in my Bayesian model.</p>
 <p>The scatter plot below shows the relationship between traffic density and accident occurrence. As expected, accidents (values &gt; 0) tend to cluster in grid cells with higher traffic volumes (such as the Danish Straits or the Gulf of Gdańsk).</p>
 <div class="cell">
 <details class="code-fold">
@@ -843,7 +843,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>The "Zero-Inflation" Problem</span>
 <span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>The fundamental challenge in modeling maritime accidents is their rarity. Traditional Poisson or Negative Binomial models often fail because they cannot account for the massive excess of zeros (grid cells with no accidents in a given month).</span>
 <span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>The bar plot below illustrates the distribution of our response variable (total_count). The overwhelming dominance of zeros strictly justifies the deployment of a Zero-Inflated Negative Binomial (ZINB) modeling framework.</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>The bar plot below illustrates the distribution of my response variable (total_count). The overwhelming dominance of zeros strictly justifies the deployment of a Zero-Inflated Negative Binomial (ZINB) modeling framework.</span>
 <span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: plot-zeros</span></span>
@@ -863,7 +863,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>Exposure Variable: Vessel Traffic Density</span>
-<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>In spatial risk analysis, areas with higher traffic inherently carry a higher baseline risk of incidents. We use AIS-derived traffic density (mean_traffic) as an exposure offset in our Bayesian model.</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>In spatial risk analysis, areas with higher traffic inherently carry a higher baseline risk of incidents. I use AIS-derived traffic density (mean_traffic) as an exposure offset in my Bayesian model.</span>
 <span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>The scatter plot below shows the relationship between traffic density and accident occurrence. As expected, accidents (values &gt; 0) tend to cluster in grid cells with higher traffic volumes (such as the Danish Straits or the Gulf of Gdańsk).</span>
 <span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a></span>
