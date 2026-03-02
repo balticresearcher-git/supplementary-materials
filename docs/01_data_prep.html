@@ -182,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview-of-the-dataset" id="toc-overview-of-the-dataset" class="nav-link active" data-scroll-target="#overview-of-the-dataset">Overview of the Dataset</a></li>
+  <li><a href="#overview-of-the-dataset" id="toc-overview-of-the-dataset" class="nav-link active" data-scroll-target="#overview-of-the-dataset">Overview of the dataset</a></li>
   </ul>
 </nav>
     </div>
@@ -209,12 +209,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="overview-of-the-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="overview-of-the-dataset">Overview of the Dataset</h2>
+<h2 class="anchored" data-anchor-id="overview-of-the-dataset">Overview of the dataset</h2>
 <p>The dataset integrates three primary data sources over the Baltic Sea region:</p>
 <ol type="1">
-<li><p><strong>Accident Records:</strong> Extracted from the EMSA EMCiP database (aggregated by month, year, and grid cell).</p></li>
-<li><p><strong>Exposure Data (Traffic):</strong> Vessel traffic density derived from the Automatic Identification System (AIS).</p></li>
-<li><p><strong>Environmental Data:</strong> Mean Sea Surface Temperature (SST).</p></li>
+<li><p><strong>Accident records:</strong> Extracted from the EMSA EMCiP database (aggregated by month, year, and grid cell).</p></li>
+<li><p><strong>Exposure data (Traffic):</strong> Vessel traffic density derived from the Automatic Identification System (AIS).</p></li>
+<li><p><strong>Environmental data:</strong> Mean sea surface temperature (SST).</p></li>
 </ol>
 <p>The spatial resolution is based on a defined grid system (longitude and latitude intervals), and the temporal resolution is monthly.</p>
 <div class="cell">
@@ -252,8 +252,8 @@ $ year_num     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
  Max.   :18.00000   Max.   :23.319   Max.   :1581.9298  </code></pre>
 </div>
 </div>
-<p>The “Zero-Inflation” Problem The fundamental challenge in modeling maritime accidents is their rarity. Traditional Poisson or Negative Binomial models often fail because they cannot account for the massive excess of zeros (grid cells with no accidents in a given month).</p>
-<p>The bar plot below illustrates the distribution of my response variable (total_count). The overwhelming dominance of zeros strictly justifies the deployment of a Zero-Inflated Negative Binomial (ZINB) modeling framework.</p>
+<p>The “zero-inflation” problem The fundamental challenge in modeling maritime accidents is their rarity. Traditional Poisson or negative binomial models often fail because they cannot account for the massive excess of zeros (grid cells with no accidents in a given month).</p>
+<p>The bar plot below illustrates the distribution of my response variable (total_count). The overwhelming dominance of zeros strictly justifies the deployment of a zero-inflated negative binomial (ZINB) modeling framework.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the distribution of accidents (Code)</summary>
@@ -278,17 +278,17 @@ $ year_num     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 </div>
 </div>
 <p>Exposure Variable: Vessel Traffic Density In spatial risk analysis, areas with higher traffic inherently carry a higher baseline risk of incidents. I use AIS-derived traffic density (mean_traffic) as an exposure offset in my Bayesian model.</p>
-<p>The scatter plot below shows the relationship between traffic density and accident occurrence. As expected, accidents (values &gt; 0) tend to cluster in grid cells with higher traffic volumes (such as the Danish Straits or the Gulf of Gdańsk).</p>
+<p>The scatter plot below shows the relationship between traffic density and accident occurrence. As expected, accidents (values &gt; 0) tend to cluster in grid cells with higher traffic volumes (such as the Danish Straits).</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Plot accidents vs traffic</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> mean_traffic, <span class="at">y =</span> total_count)) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">"darkred"</span>, <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Accident Counts vs. Vessel Traffic Density"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Accident counts vs. vessel traffic density"</span>,</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Jitter added for visual clarity to overlapping points"</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Mean Vessel Traffic Density (AIS)"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Accidents"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Mean vessel traffic density (AIS)"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of accidents"</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -301,16 +301,16 @@ $ year_num     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 </div>
 </div>
 </div>
-<p>Environmental Variable: Sea Surface Temperature (SST) Temperature is analyzed as a proxy for harsh winter conditions (e.g., icing, freezing spray). The distribution of SST across all spatiotemporal observations reflects the distinct seasonality of the Baltic Sea.</p>
+<p>Environmental variable: sea surface temperature (SST) Temperature is analyzed as a proxy for harsh winter conditions (e.g., icing, freezing spray). The distribution of SST across all spatiotemporal observations reflects the distinct seasonality of the Baltic Sea.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Plot SST distribution</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> mean_sst)) <span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"seagreen"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Sea Surface Temperature (SST)"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of sea surface temperature (SST)"</span>,</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Mean SST [°C]"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency of Observations"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency of observations"</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -812,15 +812,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview of the Dataset</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview of the dataset</span></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>The dataset integrates three primary data sources over the Baltic Sea region:</span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Accident Records:** Extracted from the EMSA EMCiP database (aggregated by month, year, and grid cell).</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Accident records:** Extracted from the EMSA EMCiP database (aggregated by month, year, and grid cell).</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Exposure Data (Traffic):** Vessel traffic density derived from the Automatic Identification System (AIS).</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Exposure data (Traffic):** Vessel traffic density derived from the Automatic Identification System (AIS).</span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Environmental Data:** Mean Sea Surface Temperature (SST).</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Environmental data:** Mean sea surface temperature (SST).</span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>The spatial resolution is based on a defined grid system (longitude and latitude intervals), and the temporal resolution is monthly.</span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
@@ -840,10 +840,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data <span class="sc">%&gt;%</span> <span class="fu">select</span>(total_count, mean_sst, mean_traffic))</span>
 <span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>The "Zero-Inflation" Problem</span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>The fundamental challenge in modeling maritime accidents is their rarity. Traditional Poisson or Negative Binomial models often fail because they cannot account for the massive excess of zeros (grid cells with no accidents in a given month).</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>The "zero-inflation" problem</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>The fundamental challenge in modeling maritime accidents is their rarity. Traditional Poisson or negative binomial models often fail because they cannot account for the massive excess of zeros (grid cells with no accidents in a given month).</span>
 <span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>The bar plot below illustrates the distribution of my response variable (total_count). The overwhelming dominance of zeros strictly justifies the deployment of a Zero-Inflated Negative Binomial (ZINB) modeling framework.</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>The bar plot below illustrates the distribution of my response variable (total_count). The overwhelming dominance of zeros strictly justifies the deployment of a zero-inflated negative binomial (ZINB) modeling framework.</span>
 <span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: plot-zeros</span></span>
@@ -865,7 +865,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>Exposure Variable: Vessel Traffic Density</span>
 <span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>In spatial risk analysis, areas with higher traffic inherently carry a higher baseline risk of incidents. I use AIS-derived traffic density (mean_traffic) as an exposure offset in my Bayesian model.</span>
 <span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>The scatter plot below shows the relationship between traffic density and accident occurrence. As expected, accidents (values &gt; 0) tend to cluster in grid cells with higher traffic volumes (such as the Danish Straits or the Gulf of Gdańsk).</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>The scatter plot below shows the relationship between traffic density and accident occurrence. As expected, accidents (values &gt; 0) tend to cluster in grid cells with higher traffic volumes (such as the Danish Straits).</span>
 <span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: plot-traffic</span></span>
@@ -874,16 +874,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> mean_traffic, <span class="at">y =</span> total_count)) <span class="sc">+</span></span>
 <span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">"darkred"</span>, <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
 <span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Accident Counts vs. Vessel Traffic Density"</span>,</span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Accident counts vs. vessel traffic density"</span>,</span>
 <span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Jitter added for visual clarity to overlapping points"</span>,</span>
-<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Mean Vessel Traffic Density (AIS)"</span>,</span>
-<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Accidents"</span></span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Mean vessel traffic density (AIS)"</span>,</span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of accidents"</span></span>
 <span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>))</span>
 <span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a>Environmental Variable: Sea Surface Temperature (SST)</span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a>Environmental variable: sea surface temperature (SST)</span>
 <span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a>Temperature is analyzed as a proxy for harsh winter conditions (e.g., icing, freezing spray). The distribution of SST across all spatiotemporal observations reflects the distinct seasonality of the Baltic Sea.</span>
 <span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -893,9 +893,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> mean_sst)) <span class="sc">+</span></span>
 <span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"seagreen"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
 <span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Sea Surface Temperature (SST)"</span>,</span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of sea surface temperature (SST)"</span>,</span>
 <span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Mean SST [°C]"</span>,</span>
-<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency of Observations"</span></span>
+<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency of observations"</span></span>
 <span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>))</span>

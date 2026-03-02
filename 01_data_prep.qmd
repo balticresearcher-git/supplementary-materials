@@ -9,15 +9,15 @@ format:
     message: false
 ---
 
-## Overview of the Dataset
+## Overview of the dataset
 
 The dataset integrates three primary data sources over the Baltic Sea region:
 
-1. **Accident Records:** Extracted from the EMSA EMCiP database (aggregated by month, year, and grid cell).
+1. **Accident records:** Extracted from the EMSA EMCiP database (aggregated by month, year, and grid cell).
 
-2. **Exposure Data (Traffic):** Vessel traffic density derived from the Automatic Identification System (AIS).
+2. **Exposure data (Traffic):** Vessel traffic density derived from the Automatic Identification System (AIS).
 
-3. **Environmental Data:** Mean Sea Surface Temperature (SST).
+3. **Environmental data:** Mean sea surface temperature (SST).
 
 The spatial resolution is based on a defined grid system (longitude and latitude intervals), and the temporal resolution is monthly.
 
@@ -37,10 +37,10 @@ glimpse(data %>% select(total_count, mean_sst, mean_traffic, month_factor, year_
 summary(data %>% select(total_count, mean_sst, mean_traffic))
 ```
 
-The "Zero-Inflation" Problem
-The fundamental challenge in modeling maritime accidents is their rarity. Traditional Poisson or Negative Binomial models often fail because they cannot account for the massive excess of zeros (grid cells with no accidents in a given month).
+The "zero-inflation" problem
+The fundamental challenge in modeling maritime accidents is their rarity. Traditional Poisson or negative binomial models often fail because they cannot account for the massive excess of zeros (grid cells with no accidents in a given month).
 
-The bar plot below illustrates the distribution of my response variable (total_count). The overwhelming dominance of zeros strictly justifies the deployment of a Zero-Inflated Negative Binomial (ZINB) modeling framework.
+The bar plot below illustrates the distribution of my response variable (total_count). The overwhelming dominance of zeros strictly justifies the deployment of a zero-inflated negative binomial (ZINB) modeling framework.
 
 ```{r}
 #| label: plot-zeros
@@ -62,7 +62,7 @@ ggplot(data, aes(x = total_count)) +
 Exposure Variable: Vessel Traffic Density
 In spatial risk analysis, areas with higher traffic inherently carry a higher baseline risk of incidents. I use AIS-derived traffic density (mean_traffic) as an exposure offset in my Bayesian model.
 
-The scatter plot below shows the relationship between traffic density and accident occurrence. As expected, accidents (values > 0) tend to cluster in grid cells with higher traffic volumes (such as the Danish Straits or the Gulf of Gdańsk).
+The scatter plot below shows the relationship between traffic density and accident occurrence. As expected, accidents (values > 0) tend to cluster in grid cells with higher traffic volumes (such as the Danish Straits).
 
 ```{r}
 #| label: plot-traffic
@@ -71,16 +71,16 @@ The scatter plot below shows the relationship between traffic density and accide
 ggplot(data, aes(x = mean_traffic, y = total_count)) +
   geom_jitter(alpha = 0.4, color = "darkred", width = 0.1, height = 0.1) +
   labs(
-    title = "Accident Counts vs. Vessel Traffic Density",
+    title = "Accident counts vs. vessel traffic density",
     subtitle = "Jitter added for visual clarity to overlapping points",
-    x = "Mean Vessel Traffic Density (AIS)",
-    y = "Number of Accidents"
+    x = "Mean vessel traffic density (AIS)",
+    y = "Number of accidents"
   ) +
   theme_minimal() +
   theme(plot.title = element_text(face = "bold"))
 ```
 
-Environmental Variable: Sea Surface Temperature (SST)
+Environmental variable: sea surface temperature (SST)
 Temperature is analyzed as a proxy for harsh winter conditions (e.g., icing, freezing spray). The distribution of SST across all spatiotemporal observations reflects the distinct seasonality of the Baltic Sea.
 
 ```{r}
@@ -90,9 +90,9 @@ Temperature is analyzed as a proxy for harsh winter conditions (e.g., icing, fre
 ggplot(data, aes(x = mean_sst)) +
   geom_histogram(binwidth = 1, fill = "seagreen", color = "black", alpha = 0.7) +
   labs(
-    title = "Distribution of Sea Surface Temperature (SST)",
+    title = "Distribution of sea surface temperature (SST)",
     x = "Mean SST [°C]",
-    y = "Frequency of Observations"
+    y = "Frequency of observations"
   ) +
   theme_minimal() +
   theme(plot.title = element_text(face = "bold"))

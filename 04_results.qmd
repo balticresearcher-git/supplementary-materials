@@ -57,7 +57,7 @@ Figure S5. Long-term temporal trend of accident risk. The partial dependence plo
 ```{r}
 #| echo: false
 
-plot_month <- plot(effects, plot = FALSE)[["miesiac_factor"]] +
+plot_month <- plot(effects, plot = FALSE)[["month_factor"]] +
   labs(
     title = "C. Seasonal variation",
     subtitle = "Monthly distribution of expected accidents",
