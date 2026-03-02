@@ -23,10 +23,10 @@ effects <- conditional_effects(fit_full_time_with_traffic, resolution = 1000)
 
 plot_sst <- plot(effects, plot = FALSE)[["mean_sst"]] +
   labs(
-    title = "A. Marginal Effect of Sea Surface Temperature",
+    title = "A. Marginal effect of sea surface temperature",
     subtitle = "Expected accident count holding traffic and time constant",
-    x = "Mean Sea Surface Temperature [°C]",
-    y = "Predicted Number of Accidents"
+    x = "Mean sea surface temperature [°C]",
+    y = "Predicted number of accidents"
   ) +
   theme_classic() +
   theme(plot.title = element_text(face = "bold"))
@@ -34,17 +34,17 @@ plot_sst <- plot(effects, plot = FALSE)[["mean_sst"]] +
 print(plot_sst)
 ```
 
-Figure S4. Conditional effect of Sea Surface Temperature (SST). The plot illustrates the marginal effect of SST on the expected number of maritime accidents per grid cell, with all other predictors held at their reference levels and the traffic offset held at its median. The shaded area represents the 95% Bayesian credible interval. Although a slight downward trend is visible, the wide credible intervals encompassing zero indicate no substantial, independent thermal effect, supporting the hypothesis that modern navigational technologies effectively mitigate freezing-related risks.
+Figure S4. Conditional effect of sea surface temperature (SST). The plot illustrates the marginal effect of SST on the expected number of maritime accidents per grid cell, with all other predictors held at their reference levels and the traffic offset held at its median. The shaded area represents the 95% Bayesian credible interval. Although a slight downward trend is visible, the wide credible intervals encompassing zero indicate no substantial, independent thermal effect, supporting the hypothesis that modern navigational technologies effectively mitigate freezing-related risks.
 
 ```{r}
 #| echo: false
 
-plot_year <- plot(effects, plot = FALSE)[["rok_num"]] +
+plot_year <- plot(effects, plot = FALSE)[["year_num"]] +
   labs(
-    title = "B. Temporal Trend (Year-over-Year)",
+    title = "B. Temporal trend (year-over-year)",
     subtitle = "Long-term variation in expected accident counts",
     x = "Year",
-    y = "Predicted Number of Accidents"
+    y = "Predicted number of accidents"
   ) +
   theme_classic() +
   theme(plot.title = element_text(face = "bold"))
@@ -52,17 +52,17 @@ plot_year <- plot(effects, plot = FALSE)[["rok_num"]] +
 print(plot_year)
 ```
 
-Figure S5. Long-term temporal trend of accident risk. The partial dependence plot displays the estimated continuous effect of time (rok_num) on accident frequency. The visible, credible upward trajectory indicates a systematic, underlying increase in baseline accident risk over the studied period (approx. 18.5% year-over-year). This increase is independent of fluctuations in vessel traffic volume, pointing toward external latent factors such as fleet aging or increased reporting strictness (e.g., EMSA EMCiP implementation).
+Figure S5. Long-term temporal trend of accident risk. The partial dependence plot displays the estimated continuous effect of time (year_num) on accident frequency. The visible, credible upward trajectory indicates a systematic, underlying increase in baseline accident risk over the studied period (approx. 18.5% year-over-year). This increase is independent of fluctuations in vessel traffic volume, pointing toward external latent factors such as fleet aging or increased reporting strictness (e.g., EMSA EMCiP implementation).
 
 ```{r}
 #| echo: false
 
 plot_month <- plot(effects, plot = FALSE)[["miesiac_factor"]] +
   labs(
-    title = "C. Seasonal Variation",
+    title = "C. Seasonal variation",
     subtitle = "Monthly distribution of expected accidents",
     x = "Month",
-    y = "Predicted Number of Accidents"
+    y = "Predicted number of accidents"
   ) +
   theme_classic() +
   theme(plot.title = element_text(face = "bold"),

@@ -223,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_trace</span>(posterior, <span class="at">pars =</span> parameters) <span class="sc">+</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"MCMC Traceplots"</span>, <span class="at">subtitle =</span> <span class="st">"Checking chain convergence for key parameters"</span>) <span class="sc">+</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"MCMC traceplots"</span>, <span class="at">subtitle =</span> <span class="st">"Checking chain convergence for key parameters"</span>) <span class="sc">+</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
@@ -240,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_rank_overlay</span>(posterior, <span class="at">pars =</span> parameters) <span class="sc">+</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Rank Histograms"</span>, <span class="at">subtitle =</span> <span class="st">"Modern check for chain mixing"</span>) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Rank histograms"</span>, <span class="at">subtitle =</span> <span class="st">"Modern check for chain mixing"</span>) <span class="sc">+</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
@@ -269,9 +269,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Figure S3. Autocorrelation Function (ACF) of posterior draws.</p>
-<p>The ACF plots illustrate the correlation of the MCMC samples within each chain as a function of the lag distance. For all key parameters, the autocorrelation drops rapidly toward zero within the first few lags. This rapid decay indicates that the posterior draws are practically independent, leading to high Effective Sample Size (ESS) values and confirming that the Hamiltonian Monte Carlo (HMC) sampler implemented in Stan operated with high efficiency.</p>
-<p>Model Evaluation (LOO-CV)</p>
-<p>Before interpreting the epidemiological and physical effects, the predictive performance of the final Zero-Inflated Negative Binomial (ZINB) model was evaluated using Leave-One-Out Cross-Validation (LOO-CV).</p>
+<p>The ACF plots illustrate the correlation of the MCMC samples within each chain as a function of the lag distance. For all key parameters, the autocorrelation drops rapidly toward zero within the first few lags. This rapid decay indicates that the posterior draws are practically independent, leading to high effective sample size (ESS) values and confirming that the Hamiltonian Monte Carlo (HMC) sampler implemented in Stan operated with high efficiency.</p>
+<p>Model evaluation (LOO-CV)</p>
+<p>Before interpreting the epidemiological and physical effects, the predictive performance of the final zero-inflated negative ninomial (ZINB) model was evaluated using leave-one-out cross-validation (LOO-CV).</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
@@ -306,13 +306,13 @@ See help('pareto-k-diagnostic') for details.</code></pre>
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">fitted</span>(fit_full_time_with_traffic, <span class="at">summary =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mae <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(data<span class="sc">$</span>total_count <span class="sc">-</span> predictions[, <span class="st">"Estimate"</span>]), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Mean Absolute Error (MAE):"</span>, <span class="fu">round</span>(mae, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Mean absolute error (MAE):"</span>, <span class="fu">round</span>(mae, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Mean Absolute Error (MAE): 0.081 </code></pre>
+<pre><code>Mean absolute error (MAE): 0.081 </code></pre>
 </div>
 </div>
-<p>The evaluation confirmed the high numerical stability of the estimation. Analysis of the Pareto k diagnostic values revealed excellent robustness: 99.9% of the spatial observations yielded a value of k &lt;= 0.7 (good status). The model exhibited a Mean Absolute Error (MAE) of 0.081, indicating highly accurate baseline predictions. The negligible fraction of observations with high Pareto k values (0.07%) represents extreme, isolated spatiotemporal outliers (e.g., localized freak clusters of incidents) that do not skew the global posterior estimates.</p>
+<p>The evaluation confirmed the high numerical stability of the estimation. Analysis of the Pareto k diagnostic values revealed excellent robustness: 99.9% of the spatial observations yielded a value of k &lt;= 0.7 (good status). The model exhibited a mean absolute error (MAE) of 0.081, indicating highly accurate baseline predictions. The negligible fraction of observations with high Pareto k values (0.07%) represents extreme, isolated spatiotemporal outliers (e.g., localized freak clusters of incidents) that do not skew the global posterior estimates.</p>
 
 
 <!-- -->
@@ -820,7 +820,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_trace</span>(posterior, <span class="at">pars =</span> parameters) <span class="sc">+</span></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"MCMC Traceplots"</span>, <span class="at">subtitle =</span> <span class="st">"Checking chain convergence for key parameters"</span>) <span class="sc">+</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"MCMC traceplots"</span>, <span class="at">subtitle =</span> <span class="st">"Checking chain convergence for key parameters"</span>) <span class="sc">+</span></span>
 <span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
 <span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>Figure S1. MCMC Traceplots for key model parameters. </span>
@@ -829,7 +829,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_rank_overlay</span>(posterior, <span class="at">pars =</span> parameters) <span class="sc">+</span></span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Rank Histograms"</span>, <span class="at">subtitle =</span> <span class="st">"Modern check for chain mixing"</span>) <span class="sc">+</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Rank histograms"</span>, <span class="at">subtitle =</span> <span class="st">"Modern check for chain mixing"</span>) <span class="sc">+</span></span>
 <span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
 <span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>Figure S2. Rank overlay histograms for chain mixing.</span>
@@ -843,12 +843,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>Figure S3. Autocorrelation Function (ACF) of posterior draws. </span>
 <span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>The ACF plots illustrate the correlation of the MCMC samples within each chain as a function of the lag distance. For all key parameters, the autocorrelation drops rapidly toward zero within the first few lags. This rapid decay indicates that the posterior draws are practically independent, leading to high Effective Sample Size (ESS) values and confirming that the Hamiltonian Monte Carlo (HMC) sampler implemented in Stan operated with high efficiency.</span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>The ACF plots illustrate the correlation of the MCMC samples within each chain as a function of the lag distance. For all key parameters, the autocorrelation drops rapidly toward zero within the first few lags. This rapid decay indicates that the posterior draws are practically independent, leading to high effective sample size (ESS) values and confirming that the Hamiltonian Monte Carlo (HMC) sampler implemented in Stan operated with high efficiency.</span>
 <span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>Model Evaluation (LOO-CV)</span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>Model evaluation (LOO-CV)</span>
 <span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>Before interpreting the epidemiological and physical effects, the predictive performance of the final Zero-Inflated Negative Binomial (ZINB) model was evaluated using Leave-One-Out Cross-Validation (LOO-CV).</span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>Before interpreting the epidemiological and physical effects, the predictive performance of the final zero-inflated negative ninomial (ZINB) model was evaluated using leave-one-out cross-validation (LOO-CV).</span>
 <span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span>
@@ -861,10 +861,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">fitted</span>(fit_full_time_with_traffic, <span class="at">summary =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>mae <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(data<span class="sc">$</span>total_count <span class="sc">-</span> predictions[, <span class="st">"Estimate"</span>]), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Mean Absolute Error (MAE):"</span>, <span class="fu">round</span>(mae, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Mean absolute error (MAE):"</span>, <span class="fu">round</span>(mae, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>The evaluation confirmed the high numerical stability of the estimation. Analysis of the Pareto k diagnostic values revealed excellent robustness: 99.9% of the spatial observations yielded a value of k &lt;= 0.7 (good status). The model exhibited a Mean Absolute Error (MAE) of 0.081, indicating highly accurate baseline predictions. The negligible fraction of observations with high Pareto k values (0.07%) represents extreme, isolated spatiotemporal outliers (e.g., localized freak clusters of incidents) that do not skew the global posterior estimates.</span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>The evaluation confirmed the high numerical stability of the estimation. Analysis of the Pareto k diagnostic values revealed excellent robustness: 99.9% of the spatial observations yielded a value of k &lt;= 0.7 (good status). The model exhibited a mean absolute error (MAE) of 0.081, indicating highly accurate baseline predictions. The negligible fraction of observations with high Pareto k values (0.07%) represents extreme, isolated spatiotemporal outliers (e.g., localized freak clusters of incidents) that do not skew the global posterior estimates.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

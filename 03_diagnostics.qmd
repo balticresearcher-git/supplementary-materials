@@ -28,7 +28,7 @@ parameters <- c("b_Intercept", "b_mean_sst", "b_year_num", "shape", "zi")
 
 
 mcmc_trace(posterior, pars = parameters) +
-  labs(title = "MCMC Traceplots", subtitle = "Checking chain convergence for key parameters") +
+  labs(title = "MCMC traceplots", subtitle = "Checking chain convergence for key parameters") +
   theme_minimal()
 ```
 Figure S1. MCMC Traceplots for key model parameters. 
@@ -37,7 +37,7 @@ The traceplots demonstrate the sampling behavior of the four independent Markov 
 
 ```{r}
 mcmc_rank_overlay(posterior, pars = parameters) +
-  labs(title = "Rank Histograms", subtitle = "Modern check for chain mixing") +
+  labs(title = "Rank histograms", subtitle = "Modern check for chain mixing") +
   theme_minimal()
 ```
 Figure S2. Rank overlay histograms for chain mixing.
@@ -51,12 +51,12 @@ mcmc_acf(posterior, pars = parameters) +
 ```
 Figure S3. Autocorrelation Function (ACF) of posterior draws. 
 
-The ACF plots illustrate the correlation of the MCMC samples within each chain as a function of the lag distance. For all key parameters, the autocorrelation drops rapidly toward zero within the first few lags. This rapid decay indicates that the posterior draws are practically independent, leading to high Effective Sample Size (ESS) values and confirming that the Hamiltonian Monte Carlo (HMC) sampler implemented in Stan operated with high efficiency.
+The ACF plots illustrate the correlation of the MCMC samples within each chain as a function of the lag distance. For all key parameters, the autocorrelation drops rapidly toward zero within the first few lags. This rapid decay indicates that the posterior draws are practically independent, leading to high effective sample size (ESS) values and confirming that the Hamiltonian Monte Carlo (HMC) sampler implemented in Stan operated with high efficiency.
 
 
-Model Evaluation (LOO-CV)
+Model evaluation (LOO-CV)
 
-Before interpreting the epidemiological and physical effects, the predictive performance of the final Zero-Inflated Negative Binomial (ZINB) model was evaluated using Leave-One-Out Cross-Validation (LOO-CV).
+Before interpreting the epidemiological and physical effects, the predictive performance of the final zero-inflated negative ninomial (ZINB) model was evaluated using leave-one-out cross-validation (LOO-CV).
 
 ```{r}
 library(brms)
@@ -69,8 +69,8 @@ print(loo_result)
 
 predictions <- fitted(fit_full_time_with_traffic, summary = TRUE)
 mae <- mean(abs(data$total_count - predictions[, "Estimate"]), na.rm = TRUE)
-cat("Mean Absolute Error (MAE):", round(mae, 3), "\n")
+cat("Mean absolute error (MAE):", round(mae, 3), "\n")
 ```
 
-The evaluation confirmed the high numerical stability of the estimation. Analysis of the Pareto k diagnostic values revealed excellent robustness: 99.9% of the spatial observations yielded a value of k <= 0.7 (good status). The model exhibited a Mean Absolute Error (MAE) of 0.081, indicating highly accurate baseline predictions. The negligible fraction of observations with high Pareto k values (0.07%) represents extreme, isolated spatiotemporal outliers (e.g., localized freak clusters of incidents) that do not skew the global posterior estimates.
+The evaluation confirmed the high numerical stability of the estimation. Analysis of the Pareto k diagnostic values revealed excellent robustness: 99.9% of the spatial observations yielded a value of k <= 0.7 (good status). The model exhibited a mean absolute error (MAE) of 0.081, indicating highly accurate baseline predictions. The negligible fraction of observations with high Pareto k values (0.07%) represents extreme, isolated spatiotemporal outliers (e.g., localized freak clusters of incidents) that do not skew the global posterior estimates.
 
