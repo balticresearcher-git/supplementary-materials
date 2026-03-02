@@ -8,6 +8,6 @@ This repository contains the reproducible analytical workflow, R scripts, and Ba
 
 To make the review process as seamless and transparent as possible, I have compiled the entire methodology, extended MCMC diagnostics, and high-resolution spatial plots into an interactive Quarto website. [Click here to view the Interactive Supplementary Website](https://balticresearcher-git.github.io/supplementary-materials/)
 
-## Reproducibility Statement
+## Reproducibility statement
 
 All models were estimated in `R`. The interactive website contains embedded code chunks that can be expanded by clicking the **"Show the code"** buttons scattered throughout the document.
