@@ -1,6 +1,6 @@
 # Supplementary materials: Spatial risk mapping of maritime accidents in the Baltic Sea
 
-> **Notice:** *This repository has been fully anonymized to comply with Double-Blind Peer Review requirements.*
+> **Notice:** *This repository has been fully anonymized to comply with peer review requirements.*
 
 ## Overview
 
