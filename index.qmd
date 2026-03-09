@@ -1,6 +1,7 @@
 ---
 title: "Spatial risk mapping of maritime accidents in the Baltic Sea: a Bayesian hierarchical approach using AIS and environmental data"
-authors: "Anonymous authors (for double-blind review)"
+author: Agnieszka Kamedulska
+affiliation: Gdynia Maritime University, Morska 81-87 Str., 81-225 Gdynia, Poland
 bibliography: references.bib
 ---
 
